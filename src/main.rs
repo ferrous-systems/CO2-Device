@@ -23,7 +23,9 @@ use dwm1001::{
     DWM1001,
 };
 
-pub mod lib;
+use scd30;
+
+
 
 
 #[entry]
@@ -41,7 +43,7 @@ fn main() -> ! {
 
     let i2c = Twim::new(board.TWIM0, pins, twim::Frequency::K100);
 
-    let scd = lib::Scd30::new_with_address(i2c, address);
+    let scd = scd30::Scd30::new_with_address(i2c, address);
 
 
     let mut toggle = false;

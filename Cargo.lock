@@ -12,6 +12,7 @@ dependencies = [
  "nb 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "nrf52832-hal 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "panic-halt 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "scd30 0.3.0 (git+https://github.com/sinuss/scd30-rs/)",
 ]
 
 [[package]]
@@ -101,6 +102,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cortex-m 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "crc_all"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "crc_all"
@@ -364,6 +370,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "scd30"
+version = "0.3.0"
+source = "git+https://github.com/sinuss/scd30-rs/#0ae24d27a81e55908afb8c6716f4d9ff9938af88"
+dependencies = [
+ "crc_all 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "embedded-hal 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "heapless 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "semver"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -468,6 +484,7 @@ dependencies = [
 "checksum cortex-m-rt 0.6.10 (registry+https://github.com/rust-lang/crates.io-index)" = "17805910e3ecf029bdbfcc42b7384d9e3d9e5626153fa810002c1ef9839338ac"
 "checksum cortex-m-rt-macros 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "d7ae692573e0acccb1579fef1abf5a5bf1d2f3f0149a22b16870ec9309aee25f"
 "checksum cortex-m-semihosting 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "165f3f86f4d1031351a6c9dc8d5a3f8fae2050f9dd6ef925e3d675c232cc0e46"
+"checksum crc_all 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4503fbc9abff253ed46c67efa39576ffb008be83d6587c7ae35a31982c2e9f86"
 "checksum crc_all 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a8870eaf25cadb929c663b7f85e76bf9e82ceca6ac51c72c2bd8f029271187d4"
 "checksum dw1000 0.1.0 (git+https://github.com/braun-robotics/rust-dw1000?rev=036dc67b3147417c49318b840f4d769f8045967e)" = "<none>"
 "checksum dwm1001 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "5b9b30a132752b1550fd88f09001d86a9fadf1d20cd248b6e1350feb970715d5"
@@ -497,6 +514,7 @@ dependencies = [
 "checksum rand_core 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "7a6fdeb83b075e8266dcc8762c22776f6877a63111121f5f8c7411e5be7eed4b"
 "checksum rand_core 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)" = "9c33a3c44ca05fa6f1807d8e6743f3824e8509beca625669633be0acbdf509dc"
 "checksum rustc_version 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "138e3e0acb6c9fb258b19b67cb8abd63c00679d2851805ea151465464fe9030a"
+"checksum scd30 0.3.0 (git+https://github.com/sinuss/scd30-rs/)" = "<none>"
 "checksum semver 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1d7eb9ef2c18661902cc47e535f9bc51b78acd254da71d375c2f6720d9a40403"
 "checksum semver-parser 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
 "checksum serde 1.0.98 (registry+https://github.com/rust-lang/crates.io-index)" = "7fe5626ac617da2f2d9c48af5515a21d5a480dbd151e01bb1c355e26a3e68113"
