@@ -1,0 +1,9 @@
+*/target
+/target
+**/*.rs.bk
+*.rb
+_*.rs
+*.xcf
+*.svg
+*.sketch
+pitch.md
