@@ -6,4 +6,6 @@ _*.rs
 *.xcf
 *.svg
 *.sketch
+*.png
+*.jpeg
 pitch.md
