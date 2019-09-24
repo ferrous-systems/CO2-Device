@@ -6,7 +6,7 @@
 use panic_halt as _;
 
 // String formatting
-//use core::fmt::Write;
+use core::fmt::Write as writefmt;
 use heapless::String as HString;
 
 // Used to set the program entry point
@@ -23,9 +23,7 @@ use dwm1001::{
     DWM1001,
 };
 
-use scd30;
-
-
+use scd30::scd30::{Scd30, Measurement};
 
 
 #[entry]
@@ -43,14 +41,47 @@ fn main() -> ! {
 
     let i2c = Twim::new(board.TWIM0, pins, twim::Frequency::K100);
 
-    let scd = scd30::Scd30::new_with_address(i2c, address);
+    let mut scd = Scd30::new_with_address(i2c, address);
+
+
 
 
     let mut toggle = false;
 
     loop {
         s.clear();
-        //write!(&mut s, "Blink!\r\n").unwrap();
+        // scd.start_measuring();
+        // let data = scd.read();
+
+
+
+        //
+        // match data {
+        //     Ok(datas) => {
+        //         match datas {
+        //             Some(i) => {
+        //                 let co2 = i.co2;
+        //                 let value = co2.to_bits();
+        //
+        //
+        //                 write!(&mut s, "{:?}, \n", value).unwrap();
+        //                 board.uart.write(s.as_bytes()).unwrap();
+        //             }
+        //
+        //
+        //             None => {
+        //                 write!(&mut s, "0, \n").unwrap();
+        //                 board.uart.write(s.as_bytes()).unwrap();;
+        //             }
+        //         }
+        //     }
+        //     Err(e) => {
+        //         write!(&mut s, "{:?}, \n", e).unwrap();
+        //         board.uart.write(s.as_bytes()).unwrap();
+        //     }
+        // }
+
+        write!(&mut s, "1\n").unwrap();
         board.uart.write(s.as_bytes()).unwrap();
 
         // board.leds.D9  - Top LED GREEN
