@@ -43,17 +43,18 @@ fn main() -> ! {
 
     let mut scd = Scd30::new_with_address(i2c, address);
 
-
-
-
     let mut toggle = false;
 
     loop {
         s.clear();
-        // scd.start_measuring();
-        // let data = scd.read();
-
-
+        scd.soft_reset().unwrap();
+        if toggle {
+            board.leds.D10.enable();
+        } else {
+            board.leds.D10.disable();
+        }
+        scd.start_measuring().unwrap();
+        //let data = scd.read();
 
         //
         // match data {
