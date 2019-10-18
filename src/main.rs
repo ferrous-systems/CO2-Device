@@ -29,9 +29,11 @@ use dwm1001::{
 
 use scd30::scd30::{Scd30, Measurement};
 
-// fn add_argument(rd_buffer: [u8; 3], argument: &[u8]) -> Result<(), ()> {
-//
-// }
+struct SensorData {
+    co2: f32,
+    temperature: f32,
+    humidity: f32,
+}
 
 fn data_ready<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<bool, Error> {
 
@@ -103,7 +105,7 @@ fn get_frc_value<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<u16, Erro
 
 }
 
-fn get_measurement<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<f32, Error> {
+fn get_measurement<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<SensorData, Error> {
 
     let mut wr_buffer = [0u8; 2];
     wr_buffer.copy_from_slice(&[0x03, 0x00]);
@@ -113,7 +115,13 @@ fn get_measurement<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<f32, Er
     i2c.write(address, &wr_buffer).unwrap();
     i2c.read(address, &mut rd_buffer).unwrap();
 
-    Ok(u32::from_be_bytes([rd_buffer[0],rd_buffer[1], rd_buffer[3], rd_buffer[4]]) as f32)
+    let data = SensorData {
+        co2: f32::from_bits(u32::from_be_bytes([ rd_buffer[0],  rd_buffer[1],  rd_buffer[3],  rd_buffer[4] ])),
+        temperature: f32::from_bits(u32::from_be_bytes([ rd_buffer[6],  rd_buffer[7],  rd_buffer[9],  rd_buffer[10] ])),
+        humidity: f32::from_bits(u32::from_be_bytes([ rd_buffer[12],  rd_buffer[13],  rd_buffer[15],  rd_buffer[16] ]))
+    };
+
+    Ok(data)
 
 }
 
@@ -195,7 +203,12 @@ fn main() -> ! {
 
     }
 
-    let result = get_measurement(address, &mut i2c);
+    let result = get_measurement(address, &mut i2c).unwrap();
+
+    let co2 = result.co2;
+    let temp = result.temperature;
+    let humidity = result.humidity;
+
 
     // write!(&mut s, "ok {:?} \n", result).unwrap();
     // board.uart.write(s.as_bytes()).unwrap();
