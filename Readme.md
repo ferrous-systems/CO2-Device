@@ -8,6 +8,7 @@ The goal is to design and to build a network of sensors, that collect environmen
 - Project Proposal [in Progress]
 - BoM  [in Progress]
 - Serial output of sensor data
+- Talk at Rust and Tell
 - Basic LED functionality
 - Buzzer
 - Present findings of radio transmission experiments

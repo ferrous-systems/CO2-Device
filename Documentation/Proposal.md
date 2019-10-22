@@ -24,6 +24,8 @@ I decided to go for the epaper display, because interface design is restricted t
 
 The interfaces has one button, a display and three RGB LEDs. There are two basic modes: A clock only and automatic switch between displaying Temperature, humidity and CO2 values every 5 minutes. A pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
 
+Button for other functions? sensor reset?
+
 The RGB LEDs will indicate CO2 levels like a traffic light:
 
 - under 650 ppm -> green
@@ -33,6 +35,8 @@ The RGB LEDs will indicate CO2 levels like a traffic light:
 Alternatives: One RGB LED or a cluster of them changing from green over yellow to red.
 
 I opt for RGB LEDs as they can also be used for indicating errors with other colors.
+
+Onboard LEDs will indicate measurement ready.
 
 A buzzer will give a short buzz at 1000ppm. The buzzer is then paused for 15 minutes, no matter the CO2 level. If after this period, the level has not gone down, it will go off again.  
 
