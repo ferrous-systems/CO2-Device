@@ -1,42 +1,35 @@
 #![no_std]
 #![no_main]
 
-
 // Panic provider crate
-use heapless::consts::U8;
 use panic_halt as _;
 
 // String formatting
 use core::fmt::Write as writefmt;
 use heapless::String as HString;
-use heapless::Vec as HVec;
 
 // Used to set the program entry point
 use cortex_m_rt::entry;
 
 // Provides definitions for our development board
 use dwm1001::{
-    embedded_hal::blocking::i2c::{Read, Write},
     nrf52832_hal::{
-        twim::{self, Twim, Error},
-        gpio::*,
         prelude::*,
+        twim::{self, Twim},
     },
     DWM1001,
 };
 
-use crc_all::Crc;
+// use crc_all::Crc;
 
 pub mod lib;
-use lib::SensorData;
-
-
+// use lib::SensorData;
 
 #[entry]
 fn main() -> ! {
     // instanciate board and timer
-    let mut board  = DWM1001::take().unwrap();
-    let mut timer  = board.TIMER0.constrain();
+    let mut board = DWM1001::take().unwrap();
+    let mut timer = board.TIMER0.constrain();
 
     // empty heapless string for serial output
     let mut s: HString<heapless::consts::U1024> = HString::new();
@@ -65,7 +58,6 @@ fn main() -> ! {
 
         let measurement_status = lib::data_ready(address, &mut i2c).unwrap();
         if measurement_status == true {
-
             write!(&mut s, "Measurement ready. \r\n").unwrap();
             board.uart.write(s.as_bytes()).unwrap();
 
@@ -80,7 +72,6 @@ fn main() -> ! {
     let mut toggle = false;
 
     'measuring: loop {
-
         s.clear();
 
         // send command to get measurement
@@ -90,7 +81,12 @@ fn main() -> ! {
         let temp = result.temperature;
         let humidity = result.humidity;
 
-        write!(&mut s, "CO2 {:.2} ppm \r\nTemperature {:.2} C \r\nHumidity {:.2} % \r\n\r\n", co2, temp, humidity).unwrap();
+        write!(
+            &mut s,
+            "CO2 {:.2} ppm \r\nTemperature {:.2} C \r\nHumidity {:.2} % \r\n\r\n",
+            co2, temp, humidity
+        )
+        .unwrap();
         board.uart.write(s.as_bytes()).unwrap();
 
         // board.leds.D9  - Top LED GREEN
@@ -106,5 +102,4 @@ fn main() -> ! {
         toggle = !toggle;
         timer.delay(4000_000);
     }
-
 }
