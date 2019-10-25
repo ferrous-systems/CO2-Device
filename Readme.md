@@ -5,18 +5,19 @@ The goal is to design and to build a network of sensors, that collect environmen
 
 ## Milestones
 - working driver [check]
-- Project Proposal [in Progress]
-- BoM  [in Progress]
-- Serial output of sensor data
-- Talk at Rust and Tell
-- Basic LED functionality
+- Project Proposal [check]
+- Serial output of sensor data [check]
+- Talk at Rust and Tell [in Progress]
+- BoM [in Progress]
+- Serial output of sensor data [check]
+- Basic LED alert functionality
 - Buzzer
 - Present findings of radio transmission experiments
 - Develop protocol for radio transmission between nrf52832 boards
 - Basic ePaper display
 - ePaper display with button input
 - Final design for the case of the simple module
-- Set up raspberry pie
+- Set up raspberry pie with raspbian
 - Set up user input for raspberry pie
 - Connection between raspberry pie and nrf52832
 - Final design for the case of the data module
@@ -24,9 +25,12 @@ The goal is to design and to build a network of sensors, that collect environmen
 - Set up data display
 - Network health
 - Security
-- Finalize radio transmission protocoll
+- Finalize radio transmission protocol
+
 
 ## Estimated Timeframe
-- 6 Months
+- 6-8 Months
 
-## Software Documentation
+## Notes
+https://developer-blog.net/raspberry-pi-monitoring-mit-grafana/
+http://pdacontrolen.com/complete-installation-grafana-dashboard-in-raspberry-pi-3-b-b/

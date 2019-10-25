@@ -16,15 +16,13 @@ A first cost analysis showed, that a module with a display will cost about 200â‚
 
 ### Display Type
 
-For the display I had two choices: A small touchscreen vs. ePaper display and buttons. While a touch screen offers a minimal design and infinite possibilies for interface design, it consumes more energy then an epaper display. A solution would be to combine the touch screen with a motion sensor that indicates if people are present in the room, and only switch the screen on if people are there.
-I decided to go for the epaper display, because interface design is restricted to what you can do with no more then three buttons, to keep it simple.
+For the display I had two choices: A small touchscreen vs. ePaper display and buttons. While a touch screen offers a minimalistic design and infinite possibilies for interface design, it consumes more energy then an epaper display. A solution would be to combine the touch screen with a motion sensor that indicates if people are present in the room, and only switch the screen on if people are there.
+I decided to go for the epaper display, because interface design is restricted to what you can do with a limited number of buttons, to keep it simple.
 
 
 ### Interface Design
 
-The interfaces has one button, a display and three RGB LEDs. There are two basic modes: A clock only and automatic switch between displaying Temperature, humidity and CO2 values every 5 minutes. A pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
-
-Button for other functions? sensor reset?
+The interfaces has one button, a display and three RGB LEDs. There are two basic modes: A clock only and automatic switch between displaying Temperature and CO2 values every 5 minutes. Pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
 
 The RGB LEDs will indicate CO2 levels like a traffic light:
 
@@ -38,7 +36,9 @@ I opt for RGB LEDs as they can also be used for indicating errors with other col
 
 Onboard LEDs will indicate measurement ready.
 
-A buzzer will give a short buzz at 1000ppm. The buzzer is then paused for 15 minutes, no matter the CO2 level. If after this period, the level has not gone down, it will go off again.  
+A buzzer will give a short buzz at 1000ppm. The buzzer is then paused for 15 minutes, no matter the CO2 level. If after this period, the level has not gone down, it will go off again.
+
+A reset button for the device: Onboard Buttons can be accessed through a hole with a paperclip.
 
 
 ### Casing
@@ -47,7 +47,7 @@ The casing has to have an opening Large enough to allow fast change of ambient a
 
 The casing will be made out of antistatic anti reflex acrylic glass, with 4 metal spacers with 8 screws. Further screws are needed to mount the Dev board, the sensor and the display to the backside of the case.
 
-Cable, length according to placement.  
+Cable, length according to placement.
 
 
 ### Wall mounting
@@ -72,42 +72,72 @@ Questions:
 - How many packets are lost at what distance?
 - How do I deal with packet loss?
 
-The embedded training can be used for a first round of tests.
+The embedded training radio can be used for a first round of tests.
 
 
-### Protocol
+### Protocol[?]
 
 - Contains Info about the sending module
 - Contains a time stamp
 - Contains sensor data
-Options
-- ACK/NACK is returned
+Options for network health
+- ACK is returned
 - Encryption
 - Authentication
 
 
 ## Raspberry Pie
+raspbian
 
-## Case
+### Case[?]
 
 Stacked, so sensor is shielded from raspberry pie heat.
+Case will live on a shelf, that does not exist yet.
+
+### Display[?]
+
+Size of the Display to be determined through trials
 
 
-## User Input
+### User Input[?]
 
-SSH
-Webinterface
+Buttons on the case to switch between display modes
+Reset button
 
 
 ### nrf52832 to Raspberry Pie Communication
 
-#### Protocol
+SPI, Using Pins 19, 21, 23, 24, 25 on the development board, not the entire connector, as some pins are needed to connect to the sensor.
 
-## Data Display
+#### Protocol[x]
+raw sensor data is sent, network health is monitored on raspberry pie. All DWM1001 boards carry the same software.
 
-Grafana
-What to display
+### Network health monitoring[x]
 
-## Data Storage
-Backup?
-How long is data stored?
+There will be a check if modules are sending, if sent data is received, and if data is authentic.
+
+### Data Display[?]
+
+Data will be displayed with grafana (there is a raspberry pie solution available)
+
+What data should be displayed?
+ - network health
+ - environmental data
+  - CO2 concentration in each room as trend
+  - Temperature
+  - Humidity
+  - Pressure
+  - Average over x period of time
+  - deviation from average
+ - weather
+  - simple weather prediction
+  - weather alerts  
+
+How does grafana work?
+
+### Data Storage[?]
+
+How long is data stored? What is the benefit of storing data for longer periods of time?
+Daily fluctuation in CO2 is probably the most interesting, only data that is needed for doing statistics with this over a longer period of time is stored, no masses of raw data. (What data is needed?)
+
+A possiblity is to store data in a cloud. Where?
