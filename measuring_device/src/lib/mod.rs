@@ -15,6 +15,7 @@ pub fn start_measuring<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<(),
     let pressure = 0_u16;
 
     let mut wr_buffer = [0u8; 5];
+    // command bytes
     wr_buffer.copy_from_slice(&[0x00, 0x10, 0x00, 0x00, 0x00]);
 
     let mut crc = Crc::<u8>::new(0x31, 8, 0xff, 0x00, false);
@@ -66,7 +67,6 @@ pub fn get_measurement<T: TwimExt>(address: u8, i2c: &mut Twim<T>) -> Result<Sen
             rd_buffer[16],
         ])),
     };
-
     Ok(data)
 }
 

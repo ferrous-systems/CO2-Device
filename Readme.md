@@ -4,12 +4,10 @@
 The goal is to design and to build a network of sensors, that collect environment data. The sensor modules themselves have alarms to warn of critical CO2 concentrations. The collected data is sent to a raspberry pie, where the data is processed and displayed.  
 
 ## Milestones
-- working driver [check]
-- Project Proposal [check]
-- Serial output of sensor data [check]
+- [x] working driver
+- [x] Project Proposal
+- [x] Serial output of sensor data
 - Talk at Rust and Tell [in Progress]
-- BoM [in Progress]
-- Serial output of sensor data [check]
 - Basic LED alert functionality
 - Buzzer
 - Present findings of radio transmission experiments
@@ -21,6 +19,7 @@ The goal is to design and to build a network of sensors, that collect environmen
 - Set up user input for raspberry pie
 - Connection between raspberry pie and nrf52832
 - Final design for the case of the data module
+- BoM [in Progress]
 - Assemble cases
 - Set up data display
 - Network health

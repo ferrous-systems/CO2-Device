@@ -75,6 +75,7 @@ fn main() -> ! {
         s.clear();
 
         // send command to get measurement
+        // receives floats from bytes
         let result = lib::get_measurement(address, &mut i2c).unwrap();
 
         let co2 = result.co2;
