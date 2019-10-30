@@ -66,13 +66,23 @@ The Sensors communicate via Radio or BLE to the data station.
 To determine, if the network will be a star or a mesh, experiments will have to be conducted.
 
 
-### Experiments
+### Radio Experiments
+
+The setup for the embedded course was used to conduct a first experiment to find out how the radio works inside the office.
+The reliability depends highly on how much metal is next to the sending and receiving devices. Best results are optained when both devices are located higher then our monitors. People block the signal transmission, walls and whiteboards do not.
+
+We believe, that with optimized positioning of the devices, there is no need for a mesh topology.
+
 
 Questions:
 - How many packets are lost at what distance?
 - How do I deal with packet loss?
 
-The embedded training radio can be used for a first round of tests.
+- Is packet loss dependent on size of the packet?
+- Can packet loss be optimized with other Frequencies?
+-
+
+The embedded training radio setup can be used for a first round of tests.
 
 
 ### Protocol[?]
