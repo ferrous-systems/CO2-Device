@@ -16,20 +16,21 @@ use dwm1001::{
     nrf52832_hal::{
         prelude::*,
         twim::{self, Twim},
+        gpio::Level::High,
     },
     DWM1001,
 };
 
-// use crc_all::Crc;
 
 pub mod lib;
-// use lib::SensorData;
+
 
 #[entry]
 fn main() -> ! {
     // instanciate board and timer
     let mut board = DWM1001::take().unwrap();
     let mut timer = board.TIMER0.constrain();
+    // let mut pwm = board.PWM1.enable();
 
     // empty heapless string for serial output
     let mut s: HString<heapless::consts::U1024> = HString::new();
@@ -48,6 +49,10 @@ fn main() -> ! {
 
     // send command to the sensor
     lib::start_measuring(address, &mut i2c).unwrap();
+
+    let red = board.pins.SPIS_MOSI.into_push_pull_output(High);
+    // let green = board.pins.SPIS_MISO.into_push_pull_output(High);
+    let blue = board.pins.SPIS_CLK.into_push_pull_output(High);
 
     'ready: loop {
         // blink red LED for not ready status
@@ -87,8 +92,11 @@ fn main() -> ! {
             "CO2 {:.2} ppm \r\nTemperature {:.2} C \r\nHumidity {:.2} % \r\n\r\n",
             co2, temp, humidity
         )
+
         .unwrap();
         board.uart.write(s.as_bytes()).unwrap();
+
+
 
         // board.leds.D9  - Top LED GREEN
         // board.leds.D12 - Top LED RED
