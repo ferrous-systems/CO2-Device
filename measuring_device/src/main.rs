@@ -30,7 +30,8 @@ fn main() -> ! {
     // instanciate board and timer
     let mut board = DWM1001::take().unwrap();
     let mut timer = board.TIMER0.constrain();
-    // let mut pwm = board.PWM1.enable();
+
+    // let mut pwm = board.PWM0.enable();
 
     // empty heapless string for serial output
     let mut s: HString<heapless::consts::U1024> = HString::new();
@@ -95,8 +96,6 @@ fn main() -> ! {
 
         .unwrap();
         board.uart.write(s.as_bytes()).unwrap();
-
-
 
         // board.leds.D9  - Top LED GREEN
         // board.leds.D12 - Top LED RED
