@@ -1,10 +1,10 @@
-# CO2 Sensor Project
+# CO<sub>2</sub> Sensor Project
 
 ## Project Description
-The goal is to design and to build a network of sensors, that collect environment data. The sensor modules themselves have alarms to warn of critical CO2 concentrations. The collected data is sent to a raspberry pie, where the data is processed and displayed.  
+The goal is to design and to build a network of sensors, that collect environment data. The sensor modules themselves have alarms to warn of critical CO<sub>2</sub> concentrations. The collected data is sent to a raspberry pie, where the data is processed and displayed.  
 
 ## Milestones
-- [x] working driver
+- [x] Working sensor driver
 - [x] Project Proposal
 - [x] Serial output of sensor data
 - [x] Talk at Rust and Tell (<https://www.youtube.com/watch?v=HybHkK2P3yI>)

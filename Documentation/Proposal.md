@@ -22,9 +22,9 @@ I decided to go for the epaper display, because interface design is restricted t
 
 ### Interface Design
 
-The interfaces has one button, a display and three RGB LEDs. There are two basic modes: A clock only and automatic switch between displaying Temperature and CO2 values every 5 minutes. Pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
+The interfaces has one button, a display and three RGB LEDs. There are two basic modes: A clock only and automatic switch between displaying Temperature and CO<sub>2</sub> values every 5 minutes. Pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
 
-The RGB LEDs will indicate CO2 levels like a traffic light:
+The RGB LEDs will indicate CO<sub>2</sub> levels like a traffic light:
 
 - under 650 ppm -> green
 - under 1000 ppm -> Yellow
@@ -36,7 +36,7 @@ I opt for RGB LEDs as they can also be used for indicating errors with other col
 
 Onboard LEDs will indicate measurement ready.
 
-A buzzer will give a short buzz at 1000ppm. The buzzer is then paused for 15 minutes, no matter the CO2 level. If after this period, the level has not gone down, it will go off again.
+A buzzer will give a short buzz at 1000ppm. The buzzer is then paused for 15 minutes, no matter the CO<sub>2</sub> level. If after this period, the level has not gone down, it will go off again.
 
 A reset button for the device: Onboard Buttons can be accessed through a hole with a paperclip.
 
@@ -133,7 +133,7 @@ Data will be displayed with grafana (there is a raspberry pie solution available
 What data should be displayed?
  - network health
  - environmental data
-  - CO2 concentration in each room as trend
+  - CO<sub>2</sub> concentration in each room as trend
   - Temperature
   - Humidity
   - Pressure
@@ -148,6 +148,6 @@ How does grafana work?
 ### Data Storage[?]
 
 How long is data stored? What is the benefit of storing data for longer periods of time?
-Daily fluctuation in CO2 is probably the most interesting, only data that is needed for doing statistics with this over a longer period of time is stored, no masses of raw data. (What data is needed?)
+Daily fluctuation in CO<sub>2</sub> is probably the most interesting, only data that is needed for doing statistics with this over a longer period of time is stored, no masses of raw data. (What data is needed?)
 
 A possiblity is to store data in a cloud. Where?
