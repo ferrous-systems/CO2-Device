@@ -7,7 +7,7 @@ The goal is to design and to build a network of sensors, that collect environmen
 - [x] working driver
 - [x] Project Proposal
 - [x] Serial output of sensor data
-- Talk at Rust and Tell [in Progress]
+- [x] Talk at Rust and Tell (<https://www.youtube.com/watch?v=HybHkK2P3yI>)
 - Basic LED alert functionality
 - Buzzer
 - Present findings of radio transmission experiments
