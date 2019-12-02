@@ -11,7 +11,6 @@ dependencies = [
  "dwm1001 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "heapless 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "nb 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "nrf52832-hal 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "panic-halt 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "scd30 0.3.0 (git+https://github.com/sinuss/scd30-rs/)",
 ]
@@ -427,7 +426,7 @@ dependencies = [
  "dw1000 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "embedded-hal 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "embedded-timeout-macros 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "nrf52832-hal 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "nrf52832-hal 0.8.1",
 ]
 
 [[package]]
@@ -981,7 +980,6 @@ dependencies = [
 [[package]]
 name = "nrf52-hal-common"
 version = "0.8.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cast 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "cortex-m 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1010,13 +1008,12 @@ dependencies = [
 [[package]]
 name = "nrf52832-hal"
 version = "0.8.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cast 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "cortex-m 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "embedded-hal 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "nb 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "nrf52-hal-common 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "nrf52-hal-common 0.8.1",
  "nrf52832-pac 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "void 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -2133,9 +2130,7 @@ dependencies = [
 "checksum nodrop 0.1.14 (registry+https://github.com/rust-lang/crates.io-index)" = "72ef4a56884ca558e5ddb05a1d1e7e1bfd9a68d9ed024c21704cc98872dae1bb"
 "checksum nrf52-bin-logger 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ebad4d5814259af6c9401c196517f28e8a6b962849033bc88ded0eeb46e40490"
 "checksum nrf52-hal-common 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3de7d61b88c3f51a6d98207ae96a19556660d1f22e77b53f73eeff83cd4ff26e"
-"checksum nrf52-hal-common 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)" = "03dcdf72cd52a1c4829905e08a90ad6f4dc0f9d15ecf1883cc74f098199aa873"
 "checksum nrf52832-hal 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "357ea63c48c9aa63d07e92262ceab0904697f61775a69a966ff0e33f259a3989"
-"checksum nrf52832-hal 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)" = "dd4803f1d08e6a4c8726ae68b40cecf7c2ab05f49b1ce29af932d052cb61114c"
 "checksum nrf52832-pac 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)" = "979c2317388354d7dfc55c7b5098fd6becbb3ea588c7da627f2dcbcfd46a94bf"
 "checksum nrf52832-pac 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3c4545414415bddd872f13c0a5418ecc380e34347a52cb048cfed38c1b0957fa"
 "checksum num-integer 0.1.41 (registry+https://github.com/rust-lang/crates.io-index)" = "b85e541ef8255f6cf42bbfe4ef361305c6c135d10919ecc26126c4e5ae94bc09"

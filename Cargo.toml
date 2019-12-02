@@ -4,3 +4,8 @@ members = ["measuring_device",
             "radio_test/utilities/draw-modem",
             "radio_test/utilities/draw-server",
             ]
+
+[patch.crates-io.nrf52832-hal]
+default-features = false
+path = './../nrf52-hal/nrf52832-hal'
+features = ["xxAA-package"]
