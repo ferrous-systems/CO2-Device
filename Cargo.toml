@@ -6,6 +6,4 @@ members = ["measuring_device",
             ]
 
 [patch.crates-io.nrf52832-hal]
-default-features = false
 path = './../nrf52-hal/nrf52832-hal'
-features = ["xxAA-package"]
