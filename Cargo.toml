@@ -7,3 +7,6 @@ members = ["measuring_device",
 
 [patch.crates-io.nrf52832-hal]
 path = './../nrf52-hal/nrf52832-hal'
+
+[patch.crates-io.dwm1001]
+path = './../rust-dw1000/dwm1001'
