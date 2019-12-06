@@ -16,13 +16,15 @@ use dwm1001::{
     nrf52832_hal::{
         prelude::*,
         twim::{self, Twim},
-        gpio::Level::High,
+        gpio::Level::{High, Low},
     },
     DWM1001,
 };
 
 
 pub mod lib;
+use crate::lib::led;
+use crate::lib::types::{LEDs};
 
 
 #[entry]
@@ -46,14 +48,16 @@ fn main() -> ! {
     let pins = twim::Pins { scl, sda };
     let mut i2c = Twim::new(board.TWIM0, pins, twim::Frequency::K100);
 
+    let mut leds = LEDs {
+        red: board.pins.SPIS_MOSI.into_push_pull_output(Low),
+        green: board.pins.SPIS_MISO.into_push_pull_output(Low),
+        blue: board.pins.SPIS_CLK.into_push_pull_output(Low),
+    };
+
     timer.delay(2_000_000);
 
     // send command to the sensor
     lib::start_measuring(address, &mut i2c).unwrap();
-
-    let red = board.pins.SPIS_MOSI.into_push_pull_output(High);
-    // let green = board.pins.SPIS_MISO.into_push_pull_output(High);
-    let blue = board.pins.SPIS_CLK.into_push_pull_output(High);
 
     'ready: loop {
         // blink red LED for not ready status
@@ -83,6 +87,11 @@ fn main() -> ! {
         // send command to get measurement
         // receives floats from bytes
         let result = lib::get_measurement(address, &mut i2c).unwrap();
+
+        //Basic LED alert
+        leds = led::traffic_light(leds, &result.co2);
+
+
 
         let co2 = result.co2;
         let temp = result.temperature;

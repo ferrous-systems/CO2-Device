@@ -5,6 +5,9 @@ use dwm1001::nrf52832_hal::{
 
 use crc_all::Crc;
 
+pub mod led;
+pub mod types;
+
 pub struct SensorData {
     pub co2: f32,
     pub temperature: f32,
