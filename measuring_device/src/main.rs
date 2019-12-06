@@ -13,19 +13,20 @@ use cortex_m_rt::entry;
 
 // Provides definitions for our development board
 use dwm1001::{
-    nrf52832_hal::{
-        prelude::*,
-        twim::{self, Twim},
-        pwm::{self, Pwm},
-        gpio::Level::Low,
-    },
+
 
     DWM1001,
 };
 
+use nrf52832_hal::{
+    prelude::*,
+    twim::{self, Twim},
+    pwm::{self, Pwm},
+    gpio::Level::Low,
+};
 
 
-// use crc_all::Crc;
+use crc_all::Crc;
 
 pub mod lib;
 // use lib::SensorData;
@@ -49,12 +50,12 @@ fn main() -> ! {
     let pins = twim::Pins { scl, sda };
     let mut i2c = Twim::new(board.TWIM0, pins, twim::Frequency::K100);
 
-    let red = board.pins.SPIS_MOSI.into_push_pull_output(Low);
-    let green = board.pins.SPIS_MISO.into_push_pull_output(Low);
-    let blue = board.pins.SPIS_CLK.into_push_pull_output(Low);
-
-    let channels = pwm::Channels {red, green, blue};
-    let mut pulse = Pwm::new(board.PWM0, channels, pwm::Prescaler::DIV_128);
+    // let red = board.pins.SPIS_MOSI.into_push_pull_output(Low);
+    // let green = board.pins.SPIS_MISO.into_push_pull_output(Low);
+    // let blue = board.pins.SPIS_CLK.into_push_pull_output(Low);
+    //
+    // let channels = pwm::Channels {red, green, blue};
+    // let mut pulse = Pwm::new(board.PWM0, channels, pwm::Prescaler::DIV_128);
 
     timer.delay(2_000_000);
 

@@ -8,10 +8,11 @@ dependencies = [
  "cortex-m-rt",
  "cortex-m-semihosting",
  "crc_all 0.2.0",
- "dwm1001 0.3.0",
+ "dwm1001 0.2.1",
  "heapless 0.5.1",
  "nb",
- "nrf52832-hal 0.8.1",
+ "nrf52-hal-common 0.8.0",
+ "nrf52832-hal 0.8.0",
  "panic-halt",
  "scd30",
 ]
@@ -35,15 +36,6 @@ dependencies = [
  "CoreFoundation-sys",
  "libc",
  "mach 0.1.2",
-]
-
-[[package]]
-name = "accelerometer"
-version = "0.8.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14f362306d06c0d887a37e4560f5b8c0dae447c9004a0adf1c562a1af44c28a9"
-dependencies = [
- "micromath",
 ]
 
 [[package]]
@@ -145,7 +137,7 @@ dependencies = [
  "heapless 0.4.4",
  "nb",
  "nrf52-bin-logger",
- "nrf52832-pac 0.6.0",
+ "nrf52832-pac",
  "panic-ramdump",
  "postcard",
  "protocol",
@@ -451,7 +443,9 @@ dependencies = [
 
 [[package]]
 name = "dw1000"
-version = "0.3.0"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "769c0db3ac502ca14835ee1908d2d831687a7e9f8e3ec0603364d53388c47432"
 dependencies = [
  "embedded-hal",
  "ieee802154 0.3.0",
@@ -476,16 +470,17 @@ dependencies = [
 
 [[package]]
 name = "dwm1001"
-version = "0.3.0"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "740f6e492fc70d11a49d7a9b132cdd76478e2b12ee06d6436f6fa79315afa150"
 dependencies = [
- "cortex-m 0.5.10",
+ "cortex-m 0.6.1",
  "cortex-m-rt",
  "cortex-m-semihosting",
- "dw1000 0.3.0",
+ "dw1000 0.2.0",
  "embedded-hal",
  "embedded-timeout-macros",
- "lis2dh12",
- "nrf52832-hal 0.8.1",
+ "nrf52832-hal 0.8.0",
 ]
 
 [[package]]
@@ -506,9 +501,9 @@ dependencies = [
 
 [[package]]
 name = "embedded-timeout-macros"
-version = "0.2.0"
+version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e22be75848ec44e5a1e900b9731949f1bc0abaf733e92857b0fd95bf0d8cf21e"
+checksum = "429baa10dbdb9bac80064bbc69e2bb3ca8d9924ef29c59c51483da3615eee8ee"
 dependencies = [
  "embedded-hal",
  "nb",
@@ -932,17 +927,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "lis2dh12"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b21b6f14e4256ff0f242bd5906dccccce16dc451d1d4336d6e6ac949d59bc89"
-dependencies = [
- "accelerometer",
- "cast",
- "embedded-hal",
-]
-
-[[package]]
 name = "lock_api"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1003,15 +987,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75189eb85871ea5c2e2c15abbdd541185f63b408415e5051f5cac122d8c774b9"
 dependencies = [
  "rustc_version",
-]
-
-[[package]]
-name = "micromath"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4b7235ddffd8b150c8ac28d445f3c4acb688fe796d5aa051259a8559d55cc99d"
-dependencies = [
- "generic-array 0.13.2",
 ]
 
 [[package]]
@@ -1142,20 +1117,20 @@ dependencies = [
  "cortex-m 0.5.10",
  "embedded-hal",
  "nb",
- "nrf52832-pac 0.6.0",
+ "nrf52832-pac",
  "void",
 ]
 
 [[package]]
 name = "nrf52-hal-common"
-version = "0.8.1"
+version = "0.8.0"
 dependencies = [
  "cast",
- "cortex-m 0.6.1",
+ "cortex-m 0.5.10",
  "embedded-hal",
  "fpa",
  "nb",
- "nrf52832-pac 0.8.0",
+ "nrf52832-pac",
  "rand_core 0.4.2",
  "void",
 ]
@@ -1171,20 +1146,20 @@ dependencies = [
  "embedded-hal",
  "nb",
  "nrf52-hal-common 0.7.0",
- "nrf52832-pac 0.6.0",
+ "nrf52832-pac",
  "void",
 ]
 
 [[package]]
 name = "nrf52832-hal"
-version = "0.8.1"
+version = "0.8.0"
 dependencies = [
  "cast",
- "cortex-m 0.6.1",
+ "cortex-m 0.5.10",
  "embedded-hal",
  "nb",
- "nrf52-hal-common 0.8.1",
- "nrf52832-pac 0.8.0",
+ "nrf52-hal-common 0.8.0",
+ "nrf52832-pac",
  "void",
 ]
 
@@ -1196,18 +1171,6 @@ checksum = "979c2317388354d7dfc55c7b5098fd6becbb3ea588c7da627f2dcbcfd46a94bf"
 dependencies = [
  "bare-metal",
  "cortex-m 0.5.10",
- "cortex-m-rt",
- "vcell",
-]
-
-[[package]]
-name = "nrf52832-pac"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c4545414415bddd872f13c0a5418ecc380e34347a52cb048cfed38c1b0957fa"
-dependencies = [
- "bare-metal",
- "cortex-m 0.6.1",
  "cortex-m-rt",
  "vcell",
 ]
