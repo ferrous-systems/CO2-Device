@@ -7,6 +7,18 @@ This document describes how I made the design decisions. The things to consider 
 - work hours
 - material costs
 
+## CO<sub>2</sub> as Indicator for Air Quality
+
+Concentration of Carbon Dioxide is considered to be an indicator for indoor air quality since 1858. Even today, the upper reference value of 1000ppm proposed by Pettenkofer is still valid.
+
+The concentration of Carbon Dioxide from human sources is proportional to other factors which lower the air quality, such as body odor and scents from cosmetics.
+
+The [Umweltbundesamt](https://www.umweltbundesamt.de/sites/default/files/medien/pdfs/kohlendioxid_2008.pdf) proposes the following limits:
+
+* Values below 1000 ppm are considered safe
+* Values between 1000 ppm and 2000 ppm are suspicious
+* Values above 2000 ppm are unacceptable.
+
 
 ## Sensor Modules
 
@@ -26,9 +38,9 @@ The interfaces has one button, a display and three RGB LEDs. There are two basic
 
 The RGB LEDs will indicate CO<sub>2</sub> levels like a traffic light:
 
-- under 650 ppm -> green
-- under 1000 ppm -> Yellow
-- above 1000 ppm -> Red
+- under 1000 ppm -> green
+- under 2000 ppm -> Yellow
+- above 2000 ppm -> Red
 
 Alternatives: One RGB LED or a cluster of them changing from green over yellow to red.
 
@@ -36,7 +48,7 @@ I opt for RGB LEDs as they can also be used for indicating errors with other col
 
 Onboard LEDs will indicate measurement ready.
 
-A buzzer will give a short buzz at 1000ppm. The buzzer is then paused for 15 minutes, no matter the CO<sub>2</sub> level. If after this period, the level has not gone down, it will go off again.
+A buzzer will give a short buzz at 2000ppm. The buzzer is then paused for 15 minutes, no matter the CO<sub>2</sub> level. If after this period, the level has not gone down, it will go off again.
 
 A reset button for the device: Onboard Buttons can be accessed through a hole with a paperclip.
 
