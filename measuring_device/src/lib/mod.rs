@@ -4,6 +4,7 @@ use dwm1001::nrf52832_hal::{
 };
 
 use crc_all::Crc;
+pub mod buzz;
 
 pub struct SensorData {
     pub co2: f32,

@@ -27,8 +27,9 @@ use nrf52832_hal::{
 
 
 use crc_all::Crc;
-
+use buzz;
 pub mod lib;
+
 // use lib::SensorData;
 
 #[entry]
@@ -98,9 +99,9 @@ fn main() -> ! {
         let result = lib::get_measurement(address, &mut i2c).unwrap();
 
         //Basic LED alert
-        leds = led::traffic_light(leds, &result.co2);
+        pulse = buzz::buzzer(pulse, &result.co2);
 
-        
+
         let co2 = result.co2;
         let temp = result.temperature;
         let humidity = result.humidity;
