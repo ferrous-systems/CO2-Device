@@ -16,6 +16,7 @@ use dwm1001::{
 
 
     DWM1001,
+
 };
 
 use nrf52832_hal::{
@@ -27,10 +28,10 @@ use nrf52832_hal::{
 
 
 use crc_all::Crc;
-use buzz;
+
 pub mod lib;
 
-// use lib::SensorData;
+use lib::buzz;
 
 #[entry]
 fn main() -> ! {
@@ -99,7 +100,7 @@ fn main() -> ! {
         let result = lib::get_measurement(address, &mut i2c).unwrap();
 
         //Basic LED alert
-        pulse = buzz::buzzer(pulse, &result.co2);
+        buzz::buzzer(&mut pulse, &result.co2);
 
 
         let co2 = result.co2;

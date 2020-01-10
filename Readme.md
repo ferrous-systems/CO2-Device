@@ -9,7 +9,7 @@ The goal is to design and to build a network of sensors, that collect environmen
 - [x] Serial output of sensor data
 - [x] Talk at Rust and Tell (<https://www.youtube.com/watch?v=HybHkK2P3yI>)
 - [ ] Basic LED alert functionality
-- [ ] Buzzer
+- [ ] Buzzer [ in progress ]
 - [x] Present findings of radio transmission experiments
 - [ ] Develop protocol for radio transmission between nrf52832 boards
 - [ ] Advanced LED alert functionality
