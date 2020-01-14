@@ -6,6 +6,8 @@ use panic_halt as _;
 
 // String formatting
 use core::fmt::Write as writefmt;
+use core::fmt::Formatter;
+use core::format_args;
 use heapless::String as HString;
 
 // Used to set the program entry point
@@ -54,6 +56,9 @@ fn main() -> ! {
 
     // empty heapless string for serial output
     let mut s: HString<heapless::consts::U1024> = HString::new();
+    let mut c: HString<heapless::consts::U1024> = HString::new();
+    let mut t: HString<heapless::consts::U1024> = HString::new();
+    let mut h: HString<heapless::consts::U1024> = HString::new();
 
     // address of the sensor
     let address = 0x61;
@@ -84,44 +89,90 @@ fn main() -> ! {
     let mut spi = Spim::new(board.SPIM0, pins, spim::Frequency::K500, spim::MODE_0, 0);
 
     // instantiate ePaper
-    // struct Delay;
-    // impl hal::blocking::delay::DelayMs<u8> for Delay {
-    //
-    //     fn delay_ms(&mut self, n: u8) {
-    //
-    //         unimplemented!()
-    //         // |n| {
-    //         //     timer.delay(n)
-    //         // }
-    //     }
-    // };
-
     let mut delay = delay::Delay::new(board.SYST);
     let mut epd4in2 = EPD4in2::new(&mut spi, cs, busy, dc, rst, &mut delay).expect("eink initalize error");
 
     let mut display = Display4in2::default();
 
-    let c1 = Circle::new(Coord::new(150, 50), 30)
-        .with_stroke(Some(Color::Black))
-        .with_fill(Some(Color::Black))
-        .into_iter();
+    display.draw(
+       Font12x16::render_str("CO2 concentration:")
+           .with_stroke(Some(Color::Black))
+           .with_fill(Some(Color::White))
+           .translate(Coord::new(5, 5))
+           .into_iter(),
+    );
+    let conc =  600_f32;
+    write!(&mut c, "{:2} ppm", conc).unwrap();
 
-    let c2 = Circle::new(Coord::new(210, 50), 30)
-        .with_stroke(Some(Color::Black))
-        .with_fill(Some(Color::Black))
-        .into_iter();
+    display.draw(
+       Font12x16::render_str(&c)
+           .with_stroke(Some(Color::Black))
+           .with_fill(Some(Color::White))
+           .translate(Coord::new(5, 125))
+           .into_iter(),
+    );
 
-    let t1 = Triangle::new(Coord::new(239, 60), Coord::new(121, 60), Coord::new(180, 140))
-        .with_stroke(Some(Color::Black))
-        .with_stroke_width(2)
-        .with_fill(Some(Color::Black))
-        .into_iter();
+    display.draw(
+       Font12x16::render_str("Temperature:")
+           .with_stroke(Some(Color::Black))
+           .with_fill(Some(Color::White))
+           .translate(Coord::new(5, 105))
+           .into_iter(),
+    );
+    let temp =  3.111_f32;
+    write!(&mut t, "{:1} C", temp).unwrap();
+
+    display.draw(
+       Font12x16::render_str(&t)
+           .with_stroke(Some(Color::Black))
+           .with_fill(Some(Color::White))
+           .translate(Coord::new(5, 125))
+           .into_iter(),
+    );
+
+    display.draw(
+       Font12x16::render_str("Humidity:")
+           .with_stroke(Some(Color::Black))
+           .with_fill(Some(Color::White))
+           .translate(Coord::new(5, 205))
+           .into_iter(),
+    );
+
+    let hum =  600_f32;
+    write!(&mut h, "{:0} /%", hum).unwrap();
+
+    display.draw(
+       Font12x16::render_str(&h)
+           .with_stroke(Some(Color::Black))
+           .with_fill(Some(Color::White))
+           .translate(Coord::new(5, 125))
+           .into_iter(),
+    );
 
 
 
-    display.draw(c2);
-    display.draw(c1);
-    display.draw(t1);
+
+    // let c1 = Circle::new(Coord::new(150, 50), 30)
+    //     .with_stroke(Some(Color::Black))
+    //     .with_fill(Some(Color::Black))
+    //     .into_iter();
+    //
+    // let c2 = Circle::new(Coord::new(210, 50), 30)
+    //     .with_stroke(Some(Color::Black))
+    //     .with_fill(Some(Color::Black))
+    //     .into_iter();
+    //
+    // let t1 = Triangle::new(Coord::new(239, 60), Coord::new(121, 60), Coord::new(180, 140))
+    //     .with_stroke(Some(Color::Black))
+    //     .with_stroke_width(2)
+    //     .with_fill(Some(Color::Black))
+    //     .into_iter();
+    //
+    //
+    //
+    // display.draw(c2);
+    // display.draw(c1);
+    // display.draw(t1);
 
 
 
@@ -182,6 +233,7 @@ fn main() -> ! {
     //
     //     .unwrap();
     //     board.uart.write(s.as_bytes()).unwrap();
+
 
         // board.leds.D9  - Top LED GREEN
         // board.leds.D12 - Top LED RED

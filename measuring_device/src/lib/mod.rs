@@ -5,7 +5,7 @@ use dwm1001::nrf52832_hal::{
 
 use crc_all::Crc;
 
-// pub mod led;
+pub mod epaper;
 pub mod types;
 
 pub struct SensorData {
