@@ -3,11 +3,9 @@
 **/*.rs.bk
 *.rb
 _*.rs
-*.xcf
 *.svg
-*.sketch
-*.png
 *.jpeg
 pitch.md
 *.pdf
 *.txt
+/talk
