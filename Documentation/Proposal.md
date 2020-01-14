@@ -34,7 +34,37 @@ I decided to go for the epaper display, because interface design is restricted t
 
 ### Interface Design
 
-The interfaces has one button, a display and three RGB LEDs. There are two basic modes: A clock only and automatic switch between displaying Temperature and CO<sub>2</sub> values every 5 minutes. Pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
+The interfaces has one button, an ePaper display, RGB LEDs and a buzzer.
+
+#### ePaper Display
+
+There are two basic modes:
+Automatic switch between displaying Temperature, CO<sub>2</sub> and Humidity values every 5 minutes.
+Displaying all values at once.
+Displaying Status, such as Error messages.
+
+Pushing the button long will change one mode to the other. When in Sensor display mode, pushing the button short, the next value will display.
+
+[Optional: Clock]
+
+The designs of the screen:
+Everything that is not a number from sensor output or an error message is rendered as graphic and not as font. This is to keep the number fonts sizes that have to be generated minimal.
+
+Letter width in pixels has to be divisible by 8, which limits the choice of font sizes. The font ubuntu mono is used. It has a distinguished design while still being legible in low resolution.
+
+The screen mock ups were designed using a vector graphic program. The mock ups were used to create bmp files, that can be drawn on the display.
+
+![alt text](https://github.com/ferrous-systems/CO2-Device/blob/master/Documentation/CO2_mock.png "Display CO2")
+
+![alt text](https://github.com/ferrous-systems/CO2-Device/blob/master/Documentation/Temp_mock.png "Display Temperature")
+
+![alt text](https://github.com/ferrous-systems/CO2-Device/blob/master/Documentation/Hum_mock.png "Display Humidity")
+
+![alt text](https://github.com/ferrous-systems/CO2-Device/blob/master/Documentation/all_values_mock.png "Display all values")
+
+![alt text](https://github.com/ferrous-systems/CO2-Device/blob/master/Documentation/status_mock.png "Display Status")
+
+#### LEDs
 
 The RGB LEDs will indicate CO<sub>2</sub> levels like a traffic light:
 
