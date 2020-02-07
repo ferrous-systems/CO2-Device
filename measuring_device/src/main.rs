@@ -188,7 +188,7 @@ fn main() -> ! {
     // timer.delay(2_000_000);
 
     // send command to the sensor
-    // lib::start_measuring(address, &mut i2c).unwrap();
+    lib::start_measuring(address, &mut i2c).unwrap();
 
     'ready: loop {
         // blink red LED for not ready status
@@ -211,7 +211,7 @@ fn main() -> ! {
     }
 
     let mut toggle = false;
-    
+
     'measuring: loop {
         s.clear();
 
