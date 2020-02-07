@@ -26,7 +26,7 @@ use crate::lib::types::{LEDs};
 #[derive(Debug, Copy, Clone)]
 pub enum Font24x32Conf {}
 impl FontBuilderConf for Font24x32Conf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("link to file");
+    const FONT_IMAGE: &'static [u8] = include_bytes!("./fonts/font12x16_1bpp.raw");
     const CHAR_HEIGHT: u32 = 48;
     const CHAR_WIDTH: u32 = 32;
     const FONT_IMAGE_WIDTH: u32 = 32;
