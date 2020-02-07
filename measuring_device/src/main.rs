@@ -71,30 +71,30 @@ fn main() -> ! {
     let pins = twim::Pins { scl, sda };
     let mut i2c = Twim::new(board.TWIM0, pins, twim::Frequency::K100);
 
-    // configure SPI
+    // // configure SPI
 
-    let cs = board.pins.SPIS_MISO.into_push_pull_output(Low);
-    let din = board.pins.SPIS_MOSI.into_push_pull_output(Low).degrade();
-    let clk = board.pins.SPIS_CLK.into_push_pull_output(Low).degrade();
-    let dc = board.pins.READY.into_push_pull_output(Low);
-    let rst = board.pins.SPIS_CSn.into_push_pull_output(Low);
-    let busy = board.pins.RESETn.into_floating_input();
-
-
-    let pins = spim::Pins {
-        sck: clk,
-        miso: None,
-        mosi: Some(din),
-    };
+    // let cs = board.pins.SPIS_MISO.into_push_pull_output(Low);
+    // let din = board.pins.SPIS_MOSI.into_push_pull_output(Low).degrade();
+    // let clk = board.pins.SPIS_CLK.into_push_pull_output(Low).degrade();
+    // let dc = board.pins.READY.into_push_pull_output(Low);
+    // let rst = board.pins.SPIS_CSn.into_push_pull_output(Low);
+    // let busy = board.pins.RESETn.into_floating_input();
 
 
-    let mut spi = Spim::new(board.SPIM0, pins, spim::Frequency::K500, spim::MODE_0, 0);
+    // let pins = spim::Pins {
+    //     sck: clk,
+    //     miso: None,
+    //     mosi: Some(din),
+    // };
 
-    // instantiate ePaper
-    let mut delay = delay::Delay::new(board.SYST);
-    let mut epd4in2 = EPD4in2::new(&mut spi, cs, busy, dc, rst, &mut delay).expect("eink initalize error");
 
-    let mut display = Display4in2::default();
+    // let mut spi = Spim::new(board.SPIM0, pins, spim::Frequency::K500, spim::MODE_0, 0);
+    //
+    // // instantiate ePaper
+    // let mut delay = delay::Delay::new(board.SYST);
+    // let mut epd4in2 = EPD4in2::new(&mut spi, cs, busy, dc, rst, &mut delay).expect("eink initalize error");
+    //
+    // let mut display = Display4in2::default();
 
     // display.draw(
     //    Font12x16::render_str("CO2 concentration:")
@@ -155,35 +155,7 @@ fn main() -> ! {
     // let mut image = ImageBmp::new(include_bytes!("./lib/graphics/all_values.bmp")).unwrap();
     //
     // display.draw(image.into_iter());
-    let c1 = Circle::new(Coord::new(150, 50), 30)
-        .with_stroke(Some(Color::Black))
-        .with_fill(Some(Color::Black))
-        .into_iter();
-
-    let c2 = Circle::new(Coord::new(210, 50), 30)
-        .with_stroke(Some(Color::Black))
-        .with_fill(Some(Color::Black))
-        .into_iter();
-
-    let t1 = Triangle::new(Coord::new(239, 60), Coord::new(121, 60), Coord::new(180, 140))
-        .with_stroke(Some(Color::Black))
-        .with_stroke_width(2)
-        .with_fill(Some(Color::Black))
-        .into_iter();
-
-
-
-    display.draw(c2);
-    display.draw(c1);
-    display.draw(t1);
-
-
-
-    epd4in2.update_frame(&mut spi, &display.buffer()).unwrap();
-    epd4in2
-        .display_frame(&mut spi)
-        .expect("display frame new graphics");
-    delay.delay_ms(5000u16);
+    
 
     // timer.delay(2_000_000);
 
