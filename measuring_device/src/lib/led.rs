@@ -1,11 +1,8 @@
 // Provides definitions for our development board
 use dwm1001::{
     nrf52832_hal::{
-        prelude::*,
-        twim::{self, Twim},
         gpio::Level::{High, Low},
     },
-    DWM1001,
 };
 use crate::lib::types::{LEDs};
 
