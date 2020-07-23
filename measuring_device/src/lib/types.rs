@@ -1,10 +1,7 @@
 use dwm1001::{
     nrf52832_hal::{
-        prelude::*,
-        twim::{self, Twim},
-        gpio::{Level::{High, Low}, Pin, Output, PushPull, p0::{P0_06, P0_07, P0_04},},
+        gpio::{Output, PushPull, p0::{P0_06, P0_07, P0_04},},
     },
-    DWM1001,
 };
 
 
