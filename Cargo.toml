@@ -7,7 +7,7 @@ members = ["measuring_device",
 
 
 [patch.crates-io.nrf52-hal-common]
-path = './nrf52-hal-common-0.8.0'
+path = './../nrf52-hal-common-0.8.0'
 
 [patch.crates-io.nrf52832-hal]
-path = './nrf52832-hal-0.8.0'
+path = './../nrf52832-hal-0.8.0'

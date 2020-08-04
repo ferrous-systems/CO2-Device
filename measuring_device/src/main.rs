@@ -21,7 +21,7 @@ use dwm1001::{
 use nrf52832_hal::{
     prelude::*,
     twim::{self, Twim},
-    pwm::{self, Pwm},
+    pwm::{self, Pwm, DecoderLoad, DecoderMode, WaveCounterMode, Channels},
     gpio::Level::Low,
 };
 
@@ -60,10 +60,19 @@ fn main() -> ! {
         pwm_ch2: blue,
     };
 
+    static sequence: [u16; 4] = [0, 15000, 10000, 0x3333];
+
     let mut pulse = Pwm::new(board.PWM0, channels, pwm::Prescaler::DIV_8);
+
+    pulse.set_decoder(DecoderLoad::Individual, DecoderMode::RefreshCount);
+    pulse.set_wavecounter(WaveCounterMode::Up);
+    pulse.disable_loop();
+    pulse.set_sequence_0(sequence, 0, 0);
+    pulse.start_sequence_0();
 
 
     timer.delay(2_000_000);
+    pulse.stop_task();
 
     // send command to the sensor
     lib::start_measuring(address, &mut i2c).unwrap();
@@ -98,7 +107,7 @@ fn main() -> ! {
         let result = lib::get_measurement(address, &mut i2c).unwrap();
 
         //Basic LED alert
-        leds = led::traffic_light(leds, &result.co2);
+        // leds = led::traffic_light(leds, &result.co2);
 
         
         let co2 = result.co2;
@@ -107,7 +116,7 @@ fn main() -> ! {
 
         write!(
             &mut s,
-            "CO2 {:.2} ppm \r\nTemperature {:.2} C \r\nHumidity {:.2} % \r\n\r\n",
+            "{:.0} {:.0} {:.0}\r\n",
             co2, temp, humidity
         )
         .unwrap();
